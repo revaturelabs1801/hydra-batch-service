@@ -16,7 +16,6 @@ import com.revature.batch.service.BatchService;
 @SpringBootApplication
 public class BatchServiceApplication {
 	
-
 	public static void main(String[] args) {
 		SpringApplication.run(BatchServiceApplication.class, args);
 	}
