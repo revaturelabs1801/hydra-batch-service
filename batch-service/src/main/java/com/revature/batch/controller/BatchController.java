@@ -20,7 +20,7 @@ import com.revature.batch.service.BatchService;
 
  
 @RestController
-@RequestMapping(value = "/api/v1/Batches/")
+@RequestMapping(value = "/api/v2/Batch/")
 public class BatchController {
 
   private static final String EMAIL = "email";
