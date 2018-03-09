@@ -12,50 +12,48 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
 
 @Component
 @Entity
-@Table(name = "batches")
+@Table(name = "BATCH")
 public class Batch {
 
 	@Id
-	@Column(name = "Batch_ID")
+	@Column(name = "BATCH_ID")
 	@SequenceGenerator(name = "BATCH_ID_SEQ", sequenceName = "BATCH_ID_SEQ")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BATCH_ID_SEQ")
 	private Integer id;
 
-	@Column(name = "Batch_Name")
+	@Column(name = "BATCH_NAME")
 	@NotNull(message = "Batch name cannot be empty")
 	private String name;
 
-	@Column(name = "Start_Date")
+	@Column(name = "START_DATE")
 	@NotNull(message = "Start date cannot be empty")
 	private Timestamp startDate;
 
-	@Column(name = "End_Date")
+	@Column(name = "END_DATE")
 	@NotNull(message = "End date cannot be empty")
 	private Timestamp endDate;
-
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "Trainer_ID", referencedColumnName = "User_Id")
-	private List<Integer> userIDs;
 	
 	@Column(name = "TRAINER")
 	@NotNull(message = "Trainer cannt be null")
 	private Integer trainerID;
 
-	@Column(name = "Batch_Type")
-	private String type;
-	
-	@Column(name = "Batch_Length")
-	private Integer length;
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "BATCH_TYPE", referencedColumnName = "Batch_Type_ID")
+	@Autowired
+	private BatchType type;
 
 	public Batch() {
 		super();
@@ -65,22 +63,19 @@ public class Batch {
 
 	public Batch(@NotNull(message = "Batch name cannot be empty") String name,
 			@NotNull(message = "Start date cannot be empty") Timestamp startDate,
-			@NotNull(message = "End date cannot be empty") Timestamp endDate, List<Integer> userIDs,
-			@NotNull(message = "Trainer cannt be null") int trainerID, String type, Integer length) {
+			@NotNull(message = "End date cannot be empty") Timestamp endDate,
+			@NotNull(message = "Trainer cannt be null") int trainerID, BatchType type) {
 		super();
 		this.name = name;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.userIDs = userIDs;
 		this.trainerID = trainerID;
 		this.type = type;
-		this.length = length;
 	}
 
 
 
-	public Batch(Integer id, String name, Timestamp startDate, Timestamp endDate, int trainer, String type,
-			Integer length) {
+	public Batch(Integer id, String name, Timestamp startDate, Timestamp endDate, int trainer, BatchType type) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -88,17 +83,6 @@ public class Batch {
 		this.endDate = endDate;
 		this.trainerID = trainer;
 		this.type = type;
-		this.length = length;
-	}
-
-	public Batch(String name, Timestamp startDate, Timestamp endDate, int trainer, String type, Integer length) {
-		super();
-		this.name = name;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.trainerID = trainer;
-		this.type = type;
-		this.length = length;
 	}
 
 	public Integer getId() {
@@ -143,19 +127,6 @@ public class Batch {
 		// and then grab the trainers id
 		this.trainerID = trainer;
 	}
-	
-	
-
-	public List<Integer> getUserIDs() {
-		return userIDs;
-	}
-
-
-
-	public void setUserIDs(List<Integer> userIDs) {
-		this.userIDs = userIDs;
-	}
-
 
 
 	public int getTrainerID() {
@@ -170,34 +141,21 @@ public class Batch {
 
 
 
-	public String getType() {
+	public BatchType getType() {
 		return type;
 	}
 
 
 
-	public void setType(String type) {
+	public void setType(BatchType type) {
 		this.type = type;
-	}
-
-
-
-	public Integer getLength() {
-		return length;
-	}
-
-
-
-	public void setLength(Integer length) {
-		this.length = length;
 	}
 
 	
 
 	@Override
 	public String toString() {
-		return "Batch [id=" + id + ", name=" + name + ", startDate=" + startDate + ", endDate=" + endDate + ", userIDs="
-				+ userIDs + ", trainerID=" + trainerID + ", type=" + type + ", length=" + length + "]";
+		return "Batch [id=" + id + ", name=" + name + ", startDate=" + startDate + ", endDate=" + endDate + ", trainerID=" + trainerID + ", type=" + type + "]";
 	}
 
 }

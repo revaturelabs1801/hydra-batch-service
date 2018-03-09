@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.logging.log4j.LogManager;
 //import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,14 +25,14 @@ public class BatchController {
 
   private static final String EMAIL = "email";
 
-  @Autowired
-  BatchService batchService;
-
-  @RequestMapping(value = "All", method = RequestMethod.GET, produces = "application/json")
-  @ResponseBody
-  public List<Batch> getBatchAll() {
-    return batchService.getBatchAll();
-  }
+//  @Autowired
+//  BatchService batchService;
+//
+//  @RequestMapping(value = "All", method = RequestMethod.GET, produces = "application/json")
+//  @ResponseBody
+//  public List<Batch> getBatchAll() {
+//    return batchService.getBatchAll();
+//  }
 
 //  @RequestMapping(value = "Past", method = RequestMethod.GET, produces = "application/json")
 //  @ResponseBody
@@ -106,15 +105,15 @@ public class BatchController {
 //    batchService.addOrUpdateBatch(currentBatch);
 //  }
 
-  @RequestMapping(value = "ById", method = RequestMethod.GET, produces = "application/json")
-  @ResponseBody
-  public Batch getBatchById(HttpServletRequest request) {
-    return batchService.getBatchById(Integer.parseInt(request.getParameter("batchId")));
-  }
-
-  @RequestMapping(value = "UpdateBatch", method = RequestMethod.POST)
-  public void updateBatch(@RequestBody Batch batch) {
-    batchService.addOrUpdateBatch(batch);
-  }
+//  @RequestMapping(value = "ById", method = RequestMethod.GET, produces = "application/json")
+//  @ResponseBody
+//  public Batch getBatchById(HttpServletRequest request) {
+//    return batchService.getBatchById(Integer.parseInt(request.getParameter("batchId")));
+//  }
+//
+//  @RequestMapping(value = "UpdateBatch", method = RequestMethod.POST)
+//  public void updateBatch(@RequestBody Batch batch) {
+//    batchService.addOrUpdateBatch(batch);
+//  }
 
 }

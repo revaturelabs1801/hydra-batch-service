@@ -11,5 +11,4 @@ import java.util.List;
 public interface BatchRepository extends JpaRepository<Batch, Integer> {
 	public Batch findById(Integer id);
 	public List<Batch> findAll();
-	public List<Batch> findByTrainer(Integer trainer);
 }
