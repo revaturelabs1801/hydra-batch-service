@@ -3,6 +3,7 @@ package com.revature.batch.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.revature.batch.bean.BamUser;
 import com.revature.batch.bean.Batch;
 
 import java.util.List;
@@ -11,4 +12,5 @@ import java.util.List;
 public interface BatchRepository extends JpaRepository<Batch, Integer> {
 	public Batch findById(Integer id);
 	public List<Batch> findAll();
+	public List<Batch> findByTrainer(BamUser trainer);
 }

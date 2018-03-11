@@ -8,7 +8,9 @@ import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.revature.batch.bean.BamUser;
 import com.revature.batch.bean.Batch;
+import com.revature.batch.bean.BatchType;
 import com.revature.batch.repository.BatchRepository;
 import com.revature.batch.repository.BatchTypeRepository;
 
@@ -34,7 +36,7 @@ public class BatchService {
 		return batchRepository.findAll();
 	}
 
-	public List<Batch> getBatchByTrainer(User trainer) {
+	public List<Batch> getBatchByTrainer(BamUser trainer) {
 		return batchRepository.findByTrainer(trainer);
 	}
 	
