@@ -36,7 +36,7 @@ public class BatchService {
 		return batchRepository.findAll();
 	}
 
-	public List<Batch> getBatchByTrainer(BamUser trainer) {
+	public List<Batch> getBatchByTrainer(int trainer) {
 		return batchRepository.findByTrainer(trainer);
 	}
 	

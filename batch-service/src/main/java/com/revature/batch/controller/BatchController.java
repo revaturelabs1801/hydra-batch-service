@@ -127,9 +127,9 @@ public class BatchController {
 	  }
 	  
 	  //TODO implement this method by accessing user service
-	  private BamUser getTrainerByEmail(String email) {
+	  private int getTrainerByEmail(String email) {
 		  //bamUserService.findUserByEmail(request.getParameter(EMAIL);
-		  return null;
+		  return 0;
 		  
 	  }
 
