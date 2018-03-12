@@ -1,7 +1,6 @@
 package com.revature.batch.bean;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,19 +10,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-
-
-@Component
 @Entity
 @Table(name = "BATCH")
 public class Batch {
@@ -52,7 +43,6 @@ public class Batch {
 
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "BATCH_TYPE", referencedColumnName = "Batch_Type_ID")
-	@Autowired
 	private BatchType type;
 
 	public Batch() {
@@ -60,7 +50,6 @@ public class Batch {
 	}
 	
 	
-
 	public Batch(@NotNull(message = "Batch name cannot be empty") String name,
 			@NotNull(message = "Start date cannot be empty") Timestamp startDate,
 			@NotNull(message = "End date cannot be empty") Timestamp endDate,
