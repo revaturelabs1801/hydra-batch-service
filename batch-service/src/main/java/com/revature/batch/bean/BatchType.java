@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.revature.batch.logging.JSONify;
+
 @Entity
 @Table(name = "Batch_Type")
 public class BatchType {
@@ -67,7 +69,13 @@ public class BatchType {
 
 	@Override
 	public String toString() {
-		return "BatchType [id=" + id + ", name=" + name + ", length=" + length + "]";
+		JSONify jsonify = new JSONify();
+		String json = "{" + jsonify.quotify("BatchType") + ":{";
+		json += jsonify.addKey("batchTypeID") + jsonify.addValue(id.toString());
+		json += jsonify.addKey("batchTypeName") + jsonify.addValue(name);
+		json += jsonify.addKey("batchTypeLength") + jsonify.addEndValue(length.toString());
+		json += "}}";
+		return json;
 	}
 
 }
