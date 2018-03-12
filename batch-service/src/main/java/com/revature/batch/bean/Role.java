@@ -1,16 +1,12 @@
 package com.revature.batch.bean;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class Role {
 
 	private int roleId;
-	
+
 	private String name;
-	
+
 	public Role() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Role(int roleId, String name) {
@@ -39,5 +35,5 @@ public class Role {
 	public String toString() {
 		return "Role [roleId=" + roleId + ", name=" + name + "]";
 	}
-	
+
 }

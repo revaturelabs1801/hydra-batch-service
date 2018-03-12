@@ -1,14 +1,11 @@
 package com.revature.batch.service;
 
-import java.sql.Timestamp;
-import java.util.Calendar;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.batch.bean.BamUser;
 import com.revature.batch.bean.Batch;
 import com.revature.batch.bean.BatchType;
 import com.revature.batch.repository.BatchRepository;
@@ -28,7 +25,7 @@ public class BatchService {
 	}
 
 	public Batch getBatchById(Integer id) {
-		LogManager.getLogger(BatchService.class).fatal(batchRepository);
+//		LogManager.getLogger(BatchService.class).fatal(batchRepository);
 		return batchRepository.findById(id);
 	}
 
@@ -36,8 +33,8 @@ public class BatchService {
 		return batchRepository.findAll();
 	}
 
-	public List<Batch> getBatchByTrainer(int trainer) {
-		return batchRepository.findByTrainer(trainer);
+	public List<Batch> getBatchByTrainerID(int trainerID) {
+		return batchRepository.findByTrainerID(trainerID);
 	}
 	
 	public List<BatchType> getAllBatchTypes() {
