@@ -1,5 +1,6 @@
 package com.revature.batch.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 //import org.apache.logging.log4j.LogManager;
@@ -20,25 +21,36 @@ public class BatchService {
 	@Autowired
 	BatchTypeRepository batchTypeRepository;
 		
-	public void addOrUpdateBatch(Batch b) {
-		batchRepository.save(b);
+	public Batch addOrUpdateBatch(Batch b) {
+		return batchRepository.save(b);
 	}
 
 	public Batch getBatchById(Integer id) {
 //		LogManager.getLogger(BatchService.class).fatal(batchRepository);
-		return batchRepository.findById(id);
+		return batchRepository.findOne(id);
 	}
 
 	public List<Batch> getBatchAll() {
 		return batchRepository.findAll();
 	}
 
-	public List<Batch> getBatchByTrainerID(int trainerID) {
+	public List<Batch> getBatchByTrainerID(Integer trainerID) {
 		return batchRepository.findByTrainerID(trainerID);
 	}
 	
 	public List<BatchType> getAllBatchTypes() {
 		return batchTypeRepository.findAll();
+	}
+	
+	/**
+	 * Method to get all currently active batches
+	 * @author Francisco Palomino | Batch: 1712-dec10-java-steve
+	 * @param end Current date
+	 * @param start Current date
+	 * @return a list of batches, Http status 200 otherwise Http status 204
+	 */
+	public List<Batch> currentBatches(Timestamp end, Timestamp start) {
+		return batchRepository.findByEndDateGreaterThanAndStartDateLessThan(end, start);
 	}
 	
 	/**
