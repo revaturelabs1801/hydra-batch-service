@@ -15,6 +15,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.revature.batch.logging.JSONify;
+
+
 @Entity
 @Table(name = "BATCH")
 public class Batch {
@@ -50,11 +53,9 @@ public class Batch {
 	}
 	
 	
-	public Batch(@NotNull(message = "Batch name cannot be empty") String name,
-			@NotNull(message = "Start date cannot be empty") Timestamp startDate,
-			@NotNull(message = "End date cannot be empty") Timestamp endDate,
-			@NotNull(message = "Trainer cannt be null") int trainerID, BatchType type) {
+	public Batch(Integer id, String name, Timestamp startDate, Timestamp endDate, Integer trainerID, BatchType type) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.startDate = startDate;
 		this.endDate = endDate;
@@ -64,70 +65,65 @@ public class Batch {
 
 
 
-	public Batch(Integer id, String name, Timestamp startDate, Timestamp endDate, int trainer, BatchType type) {
+	public Batch(String name, Timestamp startDate, Timestamp endDate, Integer trainerID, BatchType type) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.trainerID = trainer;
+		this.trainerID = trainerID;
 		this.type = type;
 	}
+
+	
 
 	public Integer getId() {
 		return id;
 	}
 
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 
 	public String getName() {
 		return name;
 	}
 
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 
 	public Timestamp getStartDate() {
 		return startDate;
 	}
 
+
 	public void setStartDate(Timestamp startDate) {
 		this.startDate = startDate;
 	}
+
 
 	public Timestamp getEndDate() {
 		return endDate;
 	}
 
+
 	public void setEndDate(Timestamp endDate) {
 		this.endDate = endDate;
 	}
 
-	public int getTrainer() {
-		// if needed we will get the trainer from the user micro service
-		return trainerID;
-	}
 
-	public void setTrainer(int trainer) {
-		// if needed we can change this to take in a trainer
-		// and then grab the trainers id
-		this.trainerID = trainer;
-	}
-
-
-	public int getTrainerID() {
+	public Integer getTrainerID() {
 		return trainerID;
 	}
 
 
-
-	public void setTrainerID(int trainerID) {
+	public void setTrainerID(Integer trainerID) {
 		this.trainerID = trainerID;
 	}
-
 
 
 	public BatchType getType() {
@@ -135,16 +131,32 @@ public class Batch {
 	}
 
 
-
 	public void setType(BatchType type) {
 		this.type = type;
 	}
 
-	
 
 	@Override
 	public String toString() {
-		return "Batch [id=" + id + ", name=" + name + ", startDate=" + startDate + ", endDate=" + endDate + ", trainerID=" + trainerID + ", type=" + type + "]";
+		return "Batch [id=" + id + ", name=" + name + ", startDate=" + startDate + ", endDate=" + endDate
+				+ ", trainerID=" + trainerID + ", type=" + type + "]";
 	}
+	
+	
+
+
+//	@Override
+//	public String toString() {
+//		JSONify jsonify = new JSONify();
+//		String json = "{" + jsonify.quotify("Batches") + ":{";
+//		json += jsonify.addKey("batchesID") + jsonify.addValue(id.toString());
+//		json += jsonify.addKey("batchesName") + jsonify.addValue(name);
+//		json += jsonify.addKey("batchesStartDate") + jsonify.addValue(startDate.toString());
+//		json += jsonify.addKey("batchesEndDate") + jsonify.addValue(endDate.toString());
+//		json += jsonify.addKey("batchesTrainer") + trainerID + ",";
+//		json += jsonify.addKey("batchesType") + type;
+//		json += "}}";
+//		return json;
+//	}
 
 }
