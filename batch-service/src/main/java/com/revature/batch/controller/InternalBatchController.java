@@ -23,38 +23,31 @@ public class InternalBatchController {
 	
 	@PostMapping("addOrUpdateBatch")
 	public Batch addOrUpdateBatch(@RequestBody Batch batch) {
-		System.out.println("addorudatebatch:");
-		System.out.println(batch);
 		return batchService.addOrUpdateBatch(batch);
 	}
 
 	@PostMapping("getBatchById/{id}")
 	public Batch getBatchById(@PathVariable Integer id) {
-		System.out.println("getbatchbyid: " + id);
 		return batchService.getBatchById(id);
 	}
 	
 	@PostMapping("getBatchAll")
 	public List<Batch> getBatchAll() {
-		System.out.println("get batch all print");
 		return batchService.getBatchAll();
 	}
 
 	@PostMapping("getBatchByTrainer/{trainerID}")
 	public List<Batch> getBatchByTrainerID(@PathVariable Integer trainerID) {
-		System.out.println("getbatchbytrainerid: " + trainerID);
 		return batchService.getBatchByTrainerID(trainerID);
 	}
 	
 	@PostMapping("getAllBatchTypes")
 	public List<BatchType> getAllBatchTypes() {
-		System.out.println("getallbatchtypes");
 		return batchService.getAllBatchTypes();
 	}
 
 	@PostMapping("currentBatches")
 	public List<Batch> currentBatches() {
-		System.out.println("currentbatched");
 		return batchService.currentBatches();
 	}
 }
