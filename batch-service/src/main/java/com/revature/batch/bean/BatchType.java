@@ -69,13 +69,20 @@ public class BatchType {
 
 	@Override
 	public String toString() {
-		JSONify jsonify = new JSONify();
-		String json = "{" + jsonify.quotify("BatchType") + ":{";
-		json += jsonify.addKey("batchTypeID") + jsonify.addValue(id.toString());
-		json += jsonify.addKey("batchTypeName") + jsonify.addValue(name);
-		json += jsonify.addKey("batchTypeLength") + jsonify.addEndValue(length.toString());
-		json += "}}";
-		return json;
+		return "BatchType [id=" + id + ", name=" + name + ", length=" + length + "]";
 	}
+	
+	
+
+//	@Override
+//	public String toString() {
+//		JSONify jsonify = new JSONify();
+//		String json = "{" + jsonify.quotify("BatchType") + ":{";
+//		json += jsonify.addKey("batchTypeID") + jsonify.addValue(id.toString());
+//		json += jsonify.addKey("batchTypeName") + jsonify.addValue(name);
+//		json += jsonify.addKey("batchTypeLength") + jsonify.addEndValue(length.toString());
+//		json += "}}";
+//		return json;
+//	}
 
 }

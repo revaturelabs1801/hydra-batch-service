@@ -58,7 +58,7 @@ public class BatchController {
 	@GetMapping("past/{email}")
 	public ResponseEntity<List<Batch>> getPastBatches(@PathVariable String email) {
 		List<Batch> batches = batchService.getBatchByTrainerID(trainerService.getTrainerByEmail(email));
-
+		
 		// List<Batch> pastBatches = new ArrayList<>();
 		// for (Batch b : batches) {
 		// if (new Timestamp(System.currentTimeMillis()).after(b.getEndDate())) {
@@ -137,7 +137,7 @@ public class BatchController {
 	 */
 	@GetMapping("allinprogress/{email}")
 	public ResponseEntity<List<Batch>> getAllBatchesInProgress(@PathVariable String email) {
-
+		
 		List<Batch> batches = batchService.getBatchByTrainerID(trainerService.getTrainerByEmail(email));
 
 		// List<Batch> batchesInProgress = new ArrayList<>();
@@ -150,7 +150,7 @@ public class BatchController {
 		// return batchesInProgress;
 
 		Timestamp t = new Timestamp(System.currentTimeMillis());
-		batches.removeIf(b -> t.after(b.getStartDate()) && t.before(b.getEndDate()));
+		batches.removeIf(b -> t.before(b.getStartDate()) || t.after(b.getEndDate()));
 		if (batches.isEmpty()) {
 			return new ResponseEntity<List<Batch>>(HttpStatus.NO_CONTENT);
 		}
@@ -195,6 +195,8 @@ public class BatchController {
 	 */
 	@PostMapping("updatebatch")
 	public ResponseEntity<Batch> updateBatch(@RequestBody Batch batch) {
+		System.out.println(batch);
+		
 		Batch result = batchService.addOrUpdateBatch(batch);
 		if (result == null) {
 			return new ResponseEntity<Batch>(HttpStatus.BAD_REQUEST);
@@ -225,8 +227,7 @@ public class BatchController {
 	 */
 	@GetMapping("currentbatches")
 	public ResponseEntity<List<Batch>> getAllInProgress() {
-		List<Batch> batchesInProgress = batchService.currentBatches(new Timestamp(System.currentTimeMillis()),
-				new Timestamp(System.currentTimeMillis()));
+		List<Batch> batchesInProgress = batchService.currentBatches();
 		if (batchesInProgress == null || batchesInProgress.isEmpty()) {
 			return new ResponseEntity<List<Batch>>(HttpStatus.NO_CONTENT);
 		}

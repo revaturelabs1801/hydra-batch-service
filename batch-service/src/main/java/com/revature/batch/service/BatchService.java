@@ -22,6 +22,14 @@ public class BatchService {
 	BatchTypeRepository batchTypeRepository;
 		
 	public Batch addOrUpdateBatch(Batch b) {
+		if (b != null && b.getType() != null && b.getType().getId() != null) {
+			if(batchTypeRepository.exists(b.getType().getId())) {
+				b.setType(batchTypeRepository.findOne(b.getType().getId()));
+			}
+			else {
+				b.getType().setId(null);
+			}
+		}	
 		return batchRepository.save(b);
 	}
 
@@ -45,12 +53,11 @@ public class BatchService {
 	/**
 	 * Method to get all currently active batches
 	 * @author Francisco Palomino | Batch: 1712-dec10-java-steve
-	 * @param end Current date
-	 * @param start Current date
 	 * @return a list of batches, Http status 200 otherwise Http status 204
 	 */
-	public List<Batch> currentBatches(Timestamp end, Timestamp start) {
-		return batchRepository.findByEndDateGreaterThanAndStartDateLessThan(end, start);
+	public List<Batch> currentBatches() {
+		Timestamp t = new Timestamp(System.currentTimeMillis());
+		return batchRepository.findByEndDateGreaterThanAndStartDateLessThan(t, t);
 	}
 	
 	/**

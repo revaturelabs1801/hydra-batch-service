@@ -138,16 +138,25 @@ public class Batch {
 
 	@Override
 	public String toString() {
-		JSONify jsonify = new JSONify();
-		String json = "{" + jsonify.quotify("Batches") + ":{";
-		json += jsonify.addKey("batchesID") + jsonify.addValue(id.toString());
-		json += jsonify.addKey("batchesName") + jsonify.addValue(name);
-		json += jsonify.addKey("batchesStartDate") + jsonify.addValue(startDate.toString());
-		json += jsonify.addKey("batchesEndDate") + jsonify.addValue(endDate.toString());
-		json += jsonify.addKey("batchesTrainer") + trainerID + ",";
-		json += jsonify.addKey("batchesType") + type;
-		json += "}}";
-		return json;
+		return "Batch [id=" + id + ", name=" + name + ", startDate=" + startDate + ", endDate=" + endDate
+				+ ", trainerID=" + trainerID + ", type=" + type + "]";
 	}
+	
+	
+
+
+//	@Override
+//	public String toString() {
+//		JSONify jsonify = new JSONify();
+//		String json = "{" + jsonify.quotify("Batches") + ":{";
+//		json += jsonify.addKey("batchesID") + jsonify.addValue(id.toString());
+//		json += jsonify.addKey("batchesName") + jsonify.addValue(name);
+//		json += jsonify.addKey("batchesStartDate") + jsonify.addValue(startDate.toString());
+//		json += jsonify.addKey("batchesEndDate") + jsonify.addValue(endDate.toString());
+//		json += jsonify.addKey("batchesTrainer") + trainerID + ",";
+//		json += jsonify.addKey("batchesType") + type;
+//		json += "}}";
+//		return json;
+//	}
 
 }
