@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(value = HttpStatus.NO_CONTENT)
 public class NoBatchException extends RuntimeException{
 
-	private static final long serialVersionUID = -6360752869028537565L;
-
+	private static final long serialVersionUID = 7691014160603213208L;
+	
 	private final String message;
 	
 	public NoBatchException(String message) {

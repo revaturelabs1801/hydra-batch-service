@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.batch.bean.Batch;
 import com.revature.batch.bean.BatchType;
-import com.revature.batch.exception.EditBatchException;
+import com.revature.batch.exception.BatchUpdateException;
 import com.revature.batch.exception.NoBatchException;
 import com.revature.batch.service.BatchService;
 import com.revature.batch.service.TrainerService;
@@ -218,7 +218,7 @@ public class BatchController {
 		Batch result = batchService.addOrUpdateBatch(batch);
 		if (result == null) {
 //			return new ResponseEntity<Batch>(HttpStatus.BAD_REQUEST);
-			throw new EditBatchException("Error processing the update batch");
+			throw new BatchUpdateException("Error processing the update batch");
 		}
 		return result;
 
