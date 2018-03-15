@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.batch.bean.Batch;
@@ -33,10 +32,8 @@ public class BatchController {
 	 * A method to get all batches using BatchService.
 	 * 
 	 * @return a list of all batches, Http status 200 otherwise Http status 204
-	 * @throws NoBatchException 
 	 */
 	@GetMapping("all")
-	@ResponseBody()
 	public ResponseEntity<List<Batch>> getBatchAll() {
 		List<Batch> result = batchService.getBatchAll();
 
@@ -70,7 +67,7 @@ public class BatchController {
 		if (batches.isEmpty()) {
 			return new ResponseEntity<List<Batch>>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<List<Batch>>(batches,HttpStatus.OK);
+		return new ResponseEntity<List<Batch>>(batches, HttpStatus.OK);
 	}
 
 	/**
