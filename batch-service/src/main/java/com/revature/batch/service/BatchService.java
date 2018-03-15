@@ -43,7 +43,7 @@ public class BatchService {
 	}
 
 	public List<Batch> getBatchByTrainerID(Integer trainerID) {
-		return batchRepository.findByTrainerID(trainerID);
+		return trainerID == null ? null : batchRepository.findByTrainerID(trainerID);
 	}
 	
 	public List<BatchType> getAllBatchTypes() {
