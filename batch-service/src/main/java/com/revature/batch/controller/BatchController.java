@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.batch.bean.Batch;
 import com.revature.batch.bean.BatchType;
+import com.revature.batch.exception.BatchException;
+import com.revature.batch.exception.NoBatchException;
 import com.revature.batch.service.BatchService;
 import com.revature.batch.service.TrainerService;
 
@@ -35,28 +37,35 @@ public class BatchController {
 	/**
 	 * A method to get all batches using BatchService.
 	 * 
+	 * @author Zakary S. Winston R.
+	 * 
 	 * @return a list of all batches, Http status 200 otherwise Http status 204
+	 * @throws NoBatchException 
 	 */
 	@GetMapping("all")
-	public ResponseEntity<List<Batch>> getBatchAll() {
+	public ResponseEntity<List<Batch>> getBatchAll() throws NoBatchException {
 		List<Batch> result = batchService.getBatchAll();
 
 		if (result == null || result.isEmpty()) {
-			return new ResponseEntity<List<Batch>>(HttpStatus.NO_CONTENT);
+			//return new ResponseEntity<List<Batch>>(HttpStatus.NO_CONTENT);
+			throw new NoBatchException("No Batch Found", HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<List<Batch>>(result, HttpStatus.OK);
 	}
 
 	/**
 	 * A method to get all past batches for the trainer using BatchService.
+	 *
+	 * @author Zakary S. Winston R.
 	 * 
 	 * @param request
 	 *            Http request hold the trainer email as parameter.
 	 * @return a list of all past batches for the trainer, Http status 200 otherwise
 	 *         Http status 204
+	 * @throws NoBatchException 
 	 */
 	@GetMapping("past/{email}")
-	public ResponseEntity<List<Batch>> getPastBatches(@PathVariable String email) {
+	public ResponseEntity<List<Batch>> getPastBatches(@PathVariable String email) throws NoBatchException {
 		List<Batch> batches = batchService.getBatchByTrainerID(trainerService.getTrainerByEmail(email));
 		
 		// List<Batch> pastBatches = new ArrayList<>();
@@ -69,7 +78,8 @@ public class BatchController {
 		Timestamp t = new Timestamp(System.currentTimeMillis());
 		batches.removeIf(b -> t.before(b.getEndDate()));
 		if (batches.isEmpty()) {
-			return new ResponseEntity<List<Batch>>(HttpStatus.NO_CONTENT);
+//			return new ResponseEntity<List<Batch>>(HttpStatus.NO_CONTENT);
+			throw new NoBatchException("No Batch Found", HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<List<Batch>>(batches, HttpStatus.OK);
 	}
@@ -77,13 +87,16 @@ public class BatchController {
 	/**
 	 * A method to get all future batches for the trainer using BatchService.
 	 * 
+	 * @author Zakary S. Winston R.
+	 * 
 	 * @param request
 	 *            Http request hold the trainer email as parameter.
 	 * @return a list of all future batches for the trainer, Http status 200
 	 *         otherwise Http status 204
+	 * @throws NoBatchException 
 	 */
 	@GetMapping("future/{email}")
-	public ResponseEntity<List<Batch>> getFutureBatches(@PathVariable String email) {
+	public ResponseEntity<List<Batch>> getFutureBatches(@PathVariable String email) throws NoBatchException {
 		List<Batch> batches = batchService.getBatchByTrainerID(trainerService.getTrainerByEmail(email));
 
 		// List<Batch> futureBatches = new ArrayList<>();
@@ -96,7 +109,8 @@ public class BatchController {
 		Timestamp t = new Timestamp(System.currentTimeMillis());
 		batches.removeIf(b -> t.after(b.getStartDate()));
 		if (batches.isEmpty()) {
-			return new ResponseEntity<List<Batch>>(HttpStatus.NO_CONTENT);
+//			return new ResponseEntity<List<Batch>>(HttpStatus.NO_CONTENT);
+			throw new NoBatchException("No Batch Found", HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<List<Batch>>(batches, HttpStatus.OK);
 	}
@@ -104,13 +118,16 @@ public class BatchController {
 	/**
 	 * A method to get all in-progress batches for the trainer using BatchService.
 	 * 
+	 * @author Zakary S. Winston R.
+	 * 
 	 * @param request
 	 *            Http request hold the trainer email as parameter.
 	 * @return a list of all in-progress batches for the trainer, Http status 200
 	 *         otherwise Http status 204
+	 * @throws NoBatchException 
 	 */
 	@GetMapping("inprogress/{email}")
-	public ResponseEntity<Batch> getBatchInProgress(@PathVariable String email) {
+	public ResponseEntity<Batch> getBatchInProgress(@PathVariable String email) throws NoBatchException {
 		List<Batch> batches = batchService.getBatchByTrainerID(trainerService.getTrainerByEmail(email));
 
 		Batch batchInProgress = null;
@@ -122,7 +139,8 @@ public class BatchController {
 			}
 		}
 		if (batchInProgress == null) {
-			return new ResponseEntity<Batch>(HttpStatus.NO_CONTENT);
+//			return new ResponseEntity<Batch>(HttpStatus.NO_CONTENT);
+			throw new NoBatchException("No Batch Found", HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<Batch>(batchInProgress, HttpStatus.OK);
 	}
@@ -130,13 +148,16 @@ public class BatchController {
 	/**
 	 * A method to get all in-progress for the trainer batches using BatchService.
 	 * 
+	 * @author Zakary S. Winston R.
+	 * 
 	 * @param request
 	 *            Http request hold the trainer email as parameter.
 	 * @return a list of all in-progress batches for the trainer, Http status 200
 	 *         otherwise Http status 204
+	 * @throws NoBatchException 
 	 */
 	@GetMapping("allinprogress/{email}")
-	public ResponseEntity<List<Batch>> getAllBatchesInProgress(@PathVariable String email) {
+	public ResponseEntity<List<Batch>> getAllBatchesInProgress(@PathVariable String email) throws NoBatchException {
 		
 		List<Batch> batches = batchService.getBatchByTrainerID(trainerService.getTrainerByEmail(email));
 
@@ -152,7 +173,8 @@ public class BatchController {
 		Timestamp t = new Timestamp(System.currentTimeMillis());
 		batches.removeIf(b -> t.before(b.getStartDate()) || t.after(b.getEndDate()));
 		if (batches.isEmpty()) {
-			return new ResponseEntity<List<Batch>>(HttpStatus.NO_CONTENT);
+//			return new ResponseEntity<List<Batch>>(HttpStatus.NO_CONTENT);
+			throw new NoBatchException("No Batches in progress", HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<List<Batch>>(batches, HttpStatus.OK);
 	}
@@ -173,15 +195,19 @@ public class BatchController {
 	/**
 	 * A method to get batch by batch id using BatchService.
 	 * 
+	 * @author Zakary S. Winston R.
+	 * 
 	 * @param request
 	 *            Http request hold the batch id as parameter.
 	 * @return a batch , Http status 200 otherwise Http status 204.
+	 * @throws NoBatchException 
 	 */
 	@GetMapping("byid/{batchId}")
-	public ResponseEntity<Batch> getBatchById(@PathVariable int batchId) {
+	public ResponseEntity<Batch> getBatchById(@PathVariable int batchId) throws NoBatchException {
 		Batch result = batchService.getBatchById(batchId);
 		if (result == null) {
-			return new ResponseEntity<Batch>(HttpStatus.NO_CONTENT);
+//			return new ResponseEntity<Batch>(HttpStatus.NO_CONTENT);
+			throw new NoBatchException("No Batch Found", HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<Batch>(result, HttpStatus.OK);
 	}
@@ -189,17 +215,21 @@ public class BatchController {
 	/**
 	 * A method to update batch using BatchService.
 	 * 
+	 * @author Zakary S. Winston R.
+	 * 
 	 * @param batch
 	 *            to be update.
 	 * @return batch and Http status 202 otherwise Http status 400
+	 * @throws BatchException 
 	 */
 	@PostMapping("updatebatch")
-	public ResponseEntity<Batch> updateBatch(@RequestBody Batch batch) {
+	public ResponseEntity<Batch> updateBatch(@RequestBody Batch batch) throws BatchException {
 		System.out.println(batch);
 		
 		Batch result = batchService.addOrUpdateBatch(batch);
 		if (result == null) {
-			return new ResponseEntity<Batch>(HttpStatus.BAD_REQUEST);
+//			return new ResponseEntity<Batch>(HttpStatus.BAD_REQUEST);
+			throw new BatchException("Error processing operation on batch", HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<Batch>(result, HttpStatus.ACCEPTED);
 
@@ -208,13 +238,17 @@ public class BatchController {
 	/**
 	 * A method to get all batch types using BatchService.
 	 * 
+	 * @author Zakary S. Winston R.
+	 * 
 	 * @return a list of batch types, Http status 200 otherwise Http status 204
+	 * @throws NoBatchException 
 	 */
 	@GetMapping("batchtypes")
-	public ResponseEntity<List<BatchType>> getAllBatchTypes() {
+	public ResponseEntity<List<BatchType>> getAllBatchTypes() throws NoBatchException {
 		List<BatchType> result = batchService.getAllBatchTypes();
 		if (result == null || result.isEmpty()) {
-			return new ResponseEntity<List<BatchType>>(HttpStatus.NO_CONTENT);
+//			return new ResponseEntity<List<BatchType>>(HttpStatus.NO_CONTENT);
+			throw new NoBatchException("No Batch Found", HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<List<BatchType>>(result, HttpStatus.OK);
 	}
@@ -222,14 +256,16 @@ public class BatchController {
 	/**
 	 * Method to get all currently active batches
 	 * 
-	 * @author Francisco Palomino | Batch: 1712-dec10-java-steve
+	 * @author Francisco Palomino | Batch: 1712-dec10-java-steve | Zakary S., Winston R.
 	 * @return a list of batches, Http status 200 otherwise Http status 204
+	 * @throws NoBatchException 
 	 */
 	@GetMapping("currentbatches")
-	public ResponseEntity<List<Batch>> getAllInProgress() {
+	public ResponseEntity<List<Batch>> getAllInProgress() throws NoBatchException {
 		List<Batch> batchesInProgress = batchService.currentBatches();
 		if (batchesInProgress == null || batchesInProgress.isEmpty()) {
-			return new ResponseEntity<List<Batch>>(HttpStatus.NO_CONTENT);
+//			return new ResponseEntity<List<Batch>>(HttpStatus.NO_CONTENT);
+			throw new NoBatchException("No batches in progress", HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<List<Batch>>(batchesInProgress, HttpStatus.OK);
 	}
