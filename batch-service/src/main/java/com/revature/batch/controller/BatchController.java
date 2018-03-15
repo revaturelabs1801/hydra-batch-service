@@ -197,7 +197,7 @@ public class BatchController {
 		if (result == null) {
 			return new ResponseEntity<Batch>(HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<Batch>(result, HttpStatus.OK);
+		return new ResponseEntity<Batch>(result, HttpStatus.ACCEPTED);
 
 	}
 
