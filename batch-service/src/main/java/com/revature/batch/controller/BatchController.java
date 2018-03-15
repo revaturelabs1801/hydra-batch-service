@@ -54,6 +54,9 @@ public class BatchController {
 	@GetMapping("past/{email}")
 	public ResponseEntity<List<Batch>> getPastBatches(@PathVariable String email) {
 		List<Batch> batches = batchService.getBatchByTrainerID(trainerService.getTrainerByEmail(email));
+		if (batches == null) {
+			return new ResponseEntity<List<Batch>>(HttpStatus.NO_CONTENT);
+		}
 		
 		// List<Batch> pastBatches = new ArrayList<>();
 		// for (Batch b : batches) {
@@ -81,6 +84,9 @@ public class BatchController {
 	@GetMapping("future/{email}")
 	public ResponseEntity<List<Batch>> getFutureBatches(@PathVariable String email) {
 		List<Batch> batches = batchService.getBatchByTrainerID(trainerService.getTrainerByEmail(email));
+		if (batches == null) {
+			return new ResponseEntity<List<Batch>>(HttpStatus.NO_CONTENT);
+		}
 
 		// List<Batch> futureBatches = new ArrayList<>();
 		// for (Batch b : batches) {
@@ -108,7 +114,10 @@ public class BatchController {
 	@GetMapping("inprogress/{email}")
 	public ResponseEntity<Batch> getBatchInProgress(@PathVariable String email) {
 		List<Batch> batches = batchService.getBatchByTrainerID(trainerService.getTrainerByEmail(email));
-
+		if (batches == null) {
+			return new ResponseEntity<Batch>(HttpStatus.NO_CONTENT);
+		}
+		
 		Batch batchInProgress = null;
 		Timestamp t = new Timestamp(System.currentTimeMillis());
 		for (Batch b : batches) {
@@ -133,9 +142,11 @@ public class BatchController {
 	 */
 	@GetMapping("allinprogress/{email}")
 	public ResponseEntity<List<Batch>> getAllBatchesInProgress(@PathVariable String email) {
-		
 		List<Batch> batches = batchService.getBatchByTrainerID(trainerService.getTrainerByEmail(email));
-
+		if (batches == null) {
+			return new ResponseEntity<List<Batch>>(HttpStatus.NO_CONTENT);
+		}
+		
 		// List<Batch> batchesInProgress = new ArrayList<>();
 		// Timestamp t = new Timestamp(System.currentTimeMillis());
 		// for (Batch b : batches) {
