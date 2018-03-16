@@ -1,6 +1,5 @@
 package com.revature.batch.service;
 
-import java.util.HashSet;
 import java.util.Hashtable;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +36,6 @@ public class TrainerService {
 		this.restTemplate = restTemplate;
 	}
 
-	// TODO implement this method by accessing user service
 	@HystrixCommand(fallbackMethod="cachedGetTrainerByEmail")
 	public Integer getTrainerByEmail(String email) {
 		System.out.println("trainer by email: " + email);
