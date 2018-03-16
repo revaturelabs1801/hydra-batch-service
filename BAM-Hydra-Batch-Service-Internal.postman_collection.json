@@ -1,0 +1,429 @@
+{
+	"info": {
+		"name": "BAM-Hydra-Batch-Service-Internal",
+		"_postman_id": "73b46bf6-15ed-4b42-82c2-008c6392467f",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Internal",
+			"description": null,
+			"item": [
+				{
+					"name": "getBatchAll",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:21038/getBatchAll",
+							"host": [
+								"localhost"
+							],
+							"port": "21038",
+							"path": [
+								"getBatchAll"
+							]
+						},
+						"description": "Internal Access to the BatchService method getBatchAll"
+					},
+					"response": []
+				},
+				{
+					"name": "currentBatches",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:21038/currentBatches",
+							"host": [
+								"localhost"
+							],
+							"port": "21038",
+							"path": [
+								"currentBatches"
+							]
+						},
+						"description": null
+					},
+					"response": []
+				},
+				{
+					"name": "getBatchByTrainer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:21038/getBatchByTrainer/1",
+							"host": [
+								"localhost"
+							],
+							"port": "21038",
+							"path": [
+								"getBatchByTrainer",
+								"1"
+							]
+						},
+						"description": null
+					},
+					"response": []
+				},
+				{
+					"name": "getAllBatchTypes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:21038/getAllBatchTypes",
+							"host": [
+								"localhost"
+							],
+							"port": "21038",
+							"path": [
+								"getAllBatchTypes"
+							]
+						},
+						"description": null
+					},
+					"response": []
+				},
+				{
+					"name": "getBatchById",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:21038/getBatchById/50",
+							"host": [
+								"localhost"
+							],
+							"port": "21038",
+							"path": [
+								"getBatchById",
+								"50"
+							]
+						},
+						"description": null
+					},
+					"response": []
+				},
+				{
+					"name": "addOrUpdateBatch",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"1801\",\n\t\"startDate\": 1515387600000,\n\t\"endDate\": 1521259199000,\n\t\"trainerID\": 1,\n\t\"type\": {\n\t\t\"name\": \"Java\",\n\t\t\"length\": 11\n\t}\n}"
+						},
+						"url": {
+							"raw": "localhost:21038/addOrUpdateBatch",
+							"host": [
+								"localhost"
+							],
+							"port": "21038",
+							"path": [
+								"addOrUpdateBatch"
+							]
+						},
+						"description": null
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "External",
+			"description": null,
+			"item": [
+				{
+					"name": "all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:21038/api/v2/Batch/all",
+							"host": [
+								"localhost"
+							],
+							"port": "21038",
+							"path": [
+								"api",
+								"v2",
+								"Batch",
+								"all"
+							]
+						},
+						"description": null
+					},
+					"response": []
+				},
+				{
+					"name": "inprogress",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:21038/api/v2/Batch/inprogress?email=jasondaneils1@gmail.com",
+							"host": [
+								"localhost"
+							],
+							"port": "21038",
+							"path": [
+								"api",
+								"v2",
+								"Batch",
+								"inprogress"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "jasondaneils1@gmail.com",
+									"equals": true
+								}
+							]
+						},
+						"description": null
+					},
+					"response": []
+				},
+				{
+					"name": "allinprogress",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:21038/api/v2/Batch/allinprogress?email=jasondaneils1@gmail.com",
+							"host": [
+								"localhost"
+							],
+							"port": "21038",
+							"path": [
+								"api",
+								"v2",
+								"Batch",
+								"allinprogress"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "jasondaneils1@gmail.com",
+									"equals": true
+								}
+							]
+						},
+						"description": null
+					},
+					"response": []
+				},
+				{
+					"name": "byid",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:21038/api/v2/Batch/byid/50",
+							"host": [
+								"localhost"
+							],
+							"port": "21038",
+							"path": [
+								"api",
+								"v2",
+								"Batch",
+								"byid",
+								"50"
+							]
+						},
+						"description": null
+					},
+					"response": []
+				},
+				{
+					"name": "batchtypes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:21038/api/v2/Batch/batchtypes",
+							"host": [
+								"localhost"
+							],
+							"port": "21038",
+							"path": [
+								"api",
+								"v2",
+								"Batch",
+								"batchtypes"
+							]
+						},
+						"description": null
+					},
+					"response": []
+				},
+				{
+					"name": "currentbatches",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:21038/api/v2/Batch/currentbatches",
+							"host": [
+								"localhost"
+							],
+							"port": "21038",
+							"path": [
+								"api",
+								"v2",
+								"Batch",
+								"currentbatches"
+							]
+						},
+						"description": null
+					},
+					"response": []
+				},
+				{
+					"name": "updatebatch",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"1925\",\n\t\"startDate\": 1515387600000,\n\t\"endDate\": 1521259199000,\n\t\"trainerID\": 50,\n\t\"type\": {\n\t\t\"id\": 50,\n\t\t\"name\": \"Java\",\n\t\t\"length\": 13\n\t}\n}"
+						},
+						"url": {
+							"raw": "localhost:21038/api/v2/Batch/updatebatch",
+							"host": [
+								"localhost"
+							],
+							"port": "21038",
+							"path": [
+								"api",
+								"v2",
+								"Batch",
+								"updatebatch"
+							]
+						},
+						"description": "note the data within type (name and length) only matter if the id is not set"
+					},
+					"response": []
+				},
+				{
+					"name": "past",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:21038/api/v2/Batch/past?email=jasondaneils1@gmail.com",
+							"host": [
+								"localhost"
+							],
+							"port": "21038",
+							"path": [
+								"api",
+								"v2",
+								"Batch",
+								"past"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "jasondaneils1@gmail.com",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "future",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:21038/api/v2/Batch/future?email=jasondaneils1@gmail.com",
+							"host": [
+								"localhost"
+							],
+							"port": "21038",
+							"path": [
+								"api",
+								"v2",
+								"Batch",
+								"future"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "jasondaneils1@gmail.com",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
