@@ -41,6 +41,7 @@ public class TrainerService {
 	
 	public Integer cachedGetTrainerByEmail(String email) {
 		// TODO add logging here
+		System.out.println("User-service-fallback");
 		return cache.get(email);
 	}
 
