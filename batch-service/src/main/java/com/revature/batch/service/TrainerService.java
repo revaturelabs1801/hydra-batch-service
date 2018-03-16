@@ -20,6 +20,16 @@ public class TrainerService {
 	@Autowired
 	private RestTemplate restTemplate;
 	
+	public TrainerService() {
+		super();
+	}
+	
+	public TrainerService(RestTemplate restTemplate) {
+		super();
+		this.restTemplate = restTemplate;
+	}
+
+
 	// TODO implement this method by accessing user service
 	public Integer getTrainerByEmail(String email) {
 		// bamUserService.findUserByEmail(request.getParameter(EMAIL);

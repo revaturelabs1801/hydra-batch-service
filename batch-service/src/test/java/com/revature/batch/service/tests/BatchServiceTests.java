@@ -4,6 +4,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.any;
 
 import org.junit.Test;
@@ -54,6 +55,35 @@ public class BatchServiceTests {
 		
 		// Verify
 		Assert.isNull(returnBatch.getType().getId(), "null");
+	}
+	
+	@Test
+	public void addOrUpdateBatch_returnsCorrectType() {
+		// Setup
+		Batch batch = new Batch(null, null, null, null, new BatchType(1, null, null));
+		when(mockBatchTypeRepo.exists(1)).thenReturn(false);
+		when(mockBatchRepo.save(batch)).thenReturn(batch);
+		
+		// Execute
+		Batch returnBatch = batchService.addOrUpdateBatch(batch);
+		
+		// Verify
+		assertTrue(returnBatch.getType() instanceof BatchType);
+	}
+	
+	@Test
+	public void addOrUpdateBatch_returnsCorrectTypeId() {
+		// Setup
+		Batch batch = new Batch(null, null, null, null, new BatchType(1, null, null));
+		when(mockBatchTypeRepo.exists(1)).thenReturn(true);
+		when(mockBatchTypeRepo.findOne(1)).thenReturn(batch.getType());
+		when(mockBatchRepo.save(batch)).thenReturn(batch);
+		
+		// Execute
+		Batch returnBatch = batchService.addOrUpdateBatch(batch);
+		
+		// Verify
+		assertTrue(returnBatch.getType().getId() instanceof Integer);
 	}
 	
 //	public Batch addOrUpdateBatch(Batch b) {
