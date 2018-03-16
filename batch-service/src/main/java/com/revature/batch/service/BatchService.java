@@ -21,10 +21,12 @@ public class BatchService {
 	@Autowired
 	BatchTypeRepository batchTypeRepository;
 	
+	// no args constructor
 	public BatchService() {
 		super();
 	}
 
+	// constructor
 	public BatchService(BatchRepository batchRepository, BatchTypeRepository batchTypeRepository) {
 		super();
 		this.batchRepository = batchRepository;
@@ -59,7 +61,7 @@ public class BatchService {
 	}
 
 	public List<Batch> getBatchByTrainerID(Integer trainerID) {
-		return batchRepository.findByTrainerID(trainerID);
+		return trainerID == null ? null : batchRepository.findByTrainerID(trainerID);
 	}
 	
 	public List<BatchType> getAllBatchTypes() {

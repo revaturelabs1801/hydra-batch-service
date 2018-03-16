@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.revature.batch.bean.Batch;
 import com.revature.batch.bean.BatchType;
-import com.revature.batch.exception.BatchException;
+import com.revature.batch.exception.BatchUpdateException;
 import com.revature.batch.exception.NoBatchException;
 import com.revature.batch.repository.BatchRepository;
 import com.revature.batch.repository.BatchTypeRepository;
@@ -124,8 +124,8 @@ public class BatchControllerTests {
 		batchController.getBatchById(2);
 	}
 	
-	@Test(expected = BatchException.class)
-	public void updateBatch_returnsCorrectException() throws BatchException {
+	@Test(expected = BatchUpdateException.class)
+	public void updateBatch_returnsCorrectException() throws BatchUpdateException {
 		// Setup
 		Batch batch = new Batch();
 		when(mockBatchService.addOrUpdateBatch(batch)).thenReturn(batch);
