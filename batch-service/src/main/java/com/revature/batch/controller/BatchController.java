@@ -31,6 +31,16 @@ public class BatchController {
 	@Autowired
 	BatchService batchService;
 
+	public BatchController() {
+		super();
+	}
+	
+	public BatchController(TrainerService trainerService, BatchService batchService) {
+		super();
+		this.trainerService = trainerService;
+		this.batchService = batchService;
+	}
+
 	/**
 	 * A method to get all batches using BatchService.
 	 * 

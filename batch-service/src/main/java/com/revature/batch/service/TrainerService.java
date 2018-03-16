@@ -26,6 +26,18 @@ public class TrainerService {
 	@Autowired
 	private RestTemplate restTemplate;
 	
+	// no args constructor
+	public TrainerService() {
+		super();
+	}
+	
+	// constructor
+	public TrainerService(RestTemplate restTemplate) {
+		super();
+		this.restTemplate = restTemplate;
+	}
+
+	// TODO implement this method by accessing user service
 	@HystrixCommand(fallbackMethod="cachedGetTrainerByEmail")
 	public Integer getTrainerByEmail(String email) {
 		System.out.println("trainer by email: " + email);
