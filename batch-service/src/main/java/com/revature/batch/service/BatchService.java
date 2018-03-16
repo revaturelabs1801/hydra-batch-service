@@ -20,16 +20,34 @@ public class BatchService {
 
 	@Autowired
 	BatchTypeRepository batchTypeRepository;
-		
+	
+	// no args constructor
+	public BatchService() {
+		super();
+	}
+
+	// constructor
+	public BatchService(BatchRepository batchRepository, BatchTypeRepository batchTypeRepository) {
+		super();
+		this.batchRepository = batchRepository;
+		this.batchTypeRepository = batchTypeRepository;
+	}
+	
 	public Batch addOrUpdateBatch(Batch b) {
-		if (b != null && b.getType() != null && b.getType().getId() != null) {
-			if(batchTypeRepository.exists(b.getType().getId())) {
-				b.setType(batchTypeRepository.findOne(b.getType().getId()));
-			}
-			else {
+		if (b != null && 
+			b.getType() != null && 
+			b.getType().getId() != null) {
+			
+			Integer typeId = b.getType().getId();
+			
+			if (batchTypeRepository.exists(typeId)) {
+				BatchType batchType = batchTypeRepository.findOne(typeId);
+				b.setType(batchType);
+			} else {
 				b.getType().setId(null);
 			}
-		}	
+		}
+		
 		return batchRepository.save(b);
 	}
 
