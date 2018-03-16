@@ -28,11 +28,14 @@ public class TrainerService {
 	
 	@HystrixCommand(fallbackMethod="cachedGetTrainerByEmail")
 	public Integer getTrainerByEmail(String email) {
+		System.out.println("trainer by email: " + email);
 		// bamUserService.findUserByEmail(request.getParameter(EMAIL);
 		BamUser returner = restTemplate.getForObject("http://hydra-user-service/byEmail/" + email + "/", BamUser.class);
+		System.out.println("trainer from user service: " + returner);
 		if(returner == null)
 			return null;
 		cache.put(email, returner.getUserId());
+		//System.out.println(returner);
 		return returner.getUserId();
 	}
 	
