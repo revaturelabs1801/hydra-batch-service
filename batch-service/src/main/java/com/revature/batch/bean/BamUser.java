@@ -19,7 +19,7 @@ public class BamUser {
 	// @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	// @JoinColumn(name = "BATCH_ID", referencedColumnName = "BATCH_ID")
 	// @Autowired // Batch ID should only be used for associates. DO NOT use this
-	private int batch; // field to assign a batch to a trainer. It should be
+	private Integer batch; // field to assign a batch to a trainer. It should be
 						// null for
 						// trainers and admins. A trainer is assigned in the
 						// Batches table.
