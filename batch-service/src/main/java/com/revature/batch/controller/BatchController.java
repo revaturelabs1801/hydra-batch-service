@@ -22,7 +22,7 @@ import com.revature.batch.service.BatchService;
 import com.revature.batch.service.TrainerService;
 
 @RestController
-@RequestMapping(value = "/api/v2/Batch/")
+@RequestMapping(value = "/api/v2/batch/")
 public class BatchController {
 
 	@Autowired
