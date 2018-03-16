@@ -1,6 +1,5 @@
 package com.revature.batch.service;
 
-import java.util.HashSet;
 import java.util.Hashtable;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +25,27 @@ public class TrainerService {
 	@Autowired
 	private RestTemplate restTemplate;
 	
+	// no args constructor
+	public TrainerService() {
+		super();
+	}
+	
+	// constructor
+	public TrainerService(RestTemplate restTemplate) {
+		super();
+		this.restTemplate = restTemplate;
+	}
+
 	@HystrixCommand(fallbackMethod="cachedGetTrainerByEmail")
 	public Integer getTrainerByEmail(String email) {
+		System.out.println("trainer by email: " + email);
 		// bamUserService.findUserByEmail(request.getParameter(EMAIL);
 		BamUser returner = restTemplate.getForObject("http://hydra-user-service/byEmail/" + email + "/", BamUser.class);
+		System.out.println("trainer from user service: " + returner);
 		if(returner == null)
 			return null;
 		cache.put(email, returner.getUserId());
+		//System.out.println(returner);
 		return returner.getUserId();
 	}
 	
@@ -41,6 +54,7 @@ public class TrainerService {
 	
 	public Integer cachedGetTrainerByEmail(String email) {
 		// TODO add logging here
+		System.out.println("User-service-fallback");
 		return cache.get(email);
 	}
 

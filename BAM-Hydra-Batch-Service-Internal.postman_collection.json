@@ -1,7 +1,7 @@
 {
 	"info": {
 		"name": "BAM-Hydra-Batch-Service-Internal",
-		"_postman_id": "8772835b-883c-466a-992e-c63fa778150c",
+		"_postman_id": "73b46bf6-15ed-4b42-82c2-008c6392467f",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -166,7 +166,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "localhost:21038/api/v2/Batch/all",
 							"host": [
@@ -180,7 +183,7 @@
 								"all"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -189,9 +192,12 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "localhost:21038/api/v2/Batch/inprogress/rev@rev.com",
+							"raw": "localhost:21038/api/v2/Batch/inprogress?email=jasondaneils1@gmail.com",
 							"host": [
 								"localhost"
 							],
@@ -200,11 +206,17 @@
 								"api",
 								"v2",
 								"Batch",
-								"inprogress",
-								"rev@rev.com"
+								"inprogress"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "jasondaneils1@gmail.com",
+									"equals": true
+								}
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -213,9 +225,12 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "localhost:21038/api/v2/Batch/allinprogress/rev@rev.com",
+							"raw": "localhost:21038/api/v2/Batch/allinprogress?email=jasondaneils1@gmail.com",
 							"host": [
 								"localhost"
 							],
@@ -224,11 +239,17 @@
 								"api",
 								"v2",
 								"Batch",
-								"allinprogress",
-								"rev@rev.com"
+								"allinprogress"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "jasondaneils1@gmail.com",
+									"equals": true
+								}
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -237,7 +258,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "localhost:21038/api/v2/Batch/byid/50",
 							"host": [
@@ -252,7 +276,7 @@
 								"50"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -261,7 +285,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "localhost:21038/api/v2/Batch/batchtypes",
 							"host": [
@@ -275,7 +302,7 @@
 								"batchtypes"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -284,7 +311,10 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "localhost:21038/api/v2/Batch/currentbatches",
 							"host": [
@@ -298,7 +328,7 @@
 								"currentbatches"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -314,7 +344,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"1925\",\n\t\"startDate\": 1515387600000,\n\t\"endDate\": 1521259199000,\n\t\"trainerID\": 1,\n\t\"type\": {\n\t\t\"id\": 50,\n\t\t\"name\": \"Java\",\n\t\t\"length\": 13\n\t}\n}"
+							"raw": "{\n\t\"name\": \"1925\",\n\t\"startDate\": 1515387600000,\n\t\"endDate\": 1521259199000,\n\t\"trainerID\": 50,\n\t\"type\": {\n\t\t\"id\": 50,\n\t\t\"name\": \"Java\",\n\t\t\"length\": 13\n\t}\n}"
 						},
 						"url": {
 							"raw": "localhost:21038/api/v2/Batch/updatebatch",
@@ -330,6 +360,66 @@
 							]
 						},
 						"description": "note the data within type (name and length) only matter if the id is not set"
+					},
+					"response": []
+				},
+				{
+					"name": "past",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:21038/api/v2/Batch/past?email=jasondaneils1@gmail.com",
+							"host": [
+								"localhost"
+							],
+							"port": "21038",
+							"path": [
+								"api",
+								"v2",
+								"Batch",
+								"past"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "jasondaneils1@gmail.com",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "future",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:21038/api/v2/Batch/future?email=jasondaneils1@gmail.com",
+							"host": [
+								"localhost"
+							],
+							"port": "21038",
+							"path": [
+								"api",
+								"v2",
+								"Batch",
+								"future"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "jasondaneils1@gmail.com",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
 					},
 					"response": []
 				}
