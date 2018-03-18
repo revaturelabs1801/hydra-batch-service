@@ -1,7 +1,7 @@
 {
 	"info": {
 		"name": "BAM-Hydra-Batch-Service-Internal",
-		"_postman_id": "73b46bf6-15ed-4b42-82c2-008c6392467f",
+		"_postman_id": "90015c07-508e-4229-8f86-9e1306ad5c9c",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -171,7 +171,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:21038/api/v2/Batch/all",
+							"raw": "localhost:21038/api/v2/batch/all",
 							"host": [
 								"localhost"
 							],
@@ -179,7 +179,7 @@
 							"path": [
 								"api",
 								"v2",
-								"Batch",
+								"batch",
 								"all"
 							]
 						},
@@ -197,7 +197,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:21038/api/v2/Batch/inprogress?email=jasondaneils1@gmail.com",
+							"raw": "localhost:21038/api/v2/batch/inprogress?email=jasondaneils1@gmail.com",
 							"host": [
 								"localhost"
 							],
@@ -205,7 +205,7 @@
 							"path": [
 								"api",
 								"v2",
-								"Batch",
+								"batch",
 								"inprogress"
 							],
 							"query": [
@@ -230,7 +230,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:21038/api/v2/Batch/allinprogress?email=jasondaneils1@gmail.com",
+							"raw": "localhost:21038/api/v2/batch/allinprogress?email=jasondaneils1@gmail.com",
 							"host": [
 								"localhost"
 							],
@@ -238,7 +238,7 @@
 							"path": [
 								"api",
 								"v2",
-								"Batch",
+								"batch",
 								"allinprogress"
 							],
 							"query": [
@@ -263,7 +263,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:21038/api/v2/Batch/byid/50",
+							"raw": "localhost:21038/api/v2/batch/byid/50",
 							"host": [
 								"localhost"
 							],
@@ -271,7 +271,7 @@
 							"path": [
 								"api",
 								"v2",
-								"Batch",
+								"batch",
 								"byid",
 								"50"
 							]
@@ -290,7 +290,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:21038/api/v2/Batch/batchtypes",
+							"raw": "localhost:21038/api/v2/batch/batchtypes",
 							"host": [
 								"localhost"
 							],
@@ -298,7 +298,7 @@
 							"path": [
 								"api",
 								"v2",
-								"Batch",
+								"batch",
 								"batchtypes"
 							]
 						},
@@ -316,7 +316,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:21038/api/v2/Batch/currentbatches",
+							"raw": "localhost:21038/api/v2/batch/currentbatches",
 							"host": [
 								"localhost"
 							],
@@ -324,7 +324,7 @@
 							"path": [
 								"api",
 								"v2",
-								"Batch",
+								"batch",
 								"currentbatches"
 							]
 						},
@@ -347,7 +347,7 @@
 							"raw": "{\n\t\"name\": \"1925\",\n\t\"startDate\": 1515387600000,\n\t\"endDate\": 1521259199000,\n\t\"trainerID\": 50,\n\t\"type\": {\n\t\t\"id\": 50,\n\t\t\"name\": \"Java\",\n\t\t\"length\": 13\n\t}\n}"
 						},
 						"url": {
-							"raw": "localhost:21038/api/v2/Batch/updatebatch",
+							"raw": "localhost:21038/api/v2/batch/updatebatch",
 							"host": [
 								"localhost"
 							],
@@ -355,7 +355,7 @@
 							"path": [
 								"api",
 								"v2",
-								"Batch",
+								"batch",
 								"updatebatch"
 							]
 						},
@@ -368,9 +368,12 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "localhost:21038/api/v2/Batch/past?email=jasondaneils1@gmail.com",
+							"raw": "localhost:21038/api/v2/batch/past?email=jasondaneils1@gmail.com",
 							"host": [
 								"localhost"
 							],
@@ -378,7 +381,7 @@
 							"path": [
 								"api",
 								"v2",
-								"Batch",
+								"batch",
 								"past"
 							],
 							"query": [
@@ -389,7 +392,7 @@
 								}
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -398,9 +401,12 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "localhost:21038/api/v2/Batch/future?email=jasondaneils1@gmail.com",
+							"raw": "localhost:21038/api/v2/batch/future?email=jasondaneils1@gmail.com",
 							"host": [
 								"localhost"
 							],
@@ -408,7 +414,7 @@
 							"path": [
 								"api",
 								"v2",
-								"Batch",
+								"batch",
 								"future"
 							],
 							"query": [
@@ -419,7 +425,7 @@
 								}
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				}
