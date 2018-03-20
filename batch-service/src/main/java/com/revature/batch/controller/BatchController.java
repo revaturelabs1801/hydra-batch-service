@@ -64,21 +64,13 @@ public class BatchController {
 	 * @return a list of all past batches for the trainer, Http status 200 otherwise
 	 *         Http status 204
 	 */
-	@GetMapping("past")
-	public List<Batch> getPastBatches(@RequestParam("email") String email) {
-//		System.out.println("past/" + email);
+	@GetMapping("past/{email}/")
+	public List<Batch> getPastBatches(@PathVariable String email) {
 		List<Batch> batches = batchService.getBatchByTrainerID(trainerService.getTrainerByEmail(email));
 		if (batches == null) {
 			throw new NoBatchException("No past batches exist");
 		}
 		
-		// List<Batch> pastBatches = new ArrayList<>();
-		// for (Batch b : batches) {
-		// if (new Timestamp(System.currentTimeMillis()).after(b.getEndDate())) {
-		// pastBatches.add(b);
-		// }
-		// }
-		// return pastBatches;
 		Timestamp t = new Timestamp(System.currentTimeMillis());
 		batches.removeIf(b -> t.before(b.getEndDate()));
 		if (batches.isEmpty()) {
@@ -95,21 +87,14 @@ public class BatchController {
 	 * @return a list of all future batches for the trainer, Http status 200
 	 *         otherwise Http status 204
 	 */
-	@GetMapping("future")
-	public List<Batch> getFutureBatches(@RequestParam("email") String email) {
-		System.out.println("future/" + email);
+	@GetMapping("future/{email}/")
+	public List<Batch> getFutureBatches(@PathVariable String email) {
+//		System.out.println("future/" + email);
 		List<Batch> batches = batchService.getBatchByTrainerID(trainerService.getTrainerByEmail(email));
 		if (batches == null) {
 			throw new NoBatchException("No future batches");
 		}
 
-		// List<Batch> futureBatches = new ArrayList<>();
-		// for (Batch b : batches) {
-		// if (new Timestamp(System.currentTimeMillis()).before(b.getStartDate())) {
-		// futureBatches.add(b);
-		// }
-		// }
-		// return futureBatches;
 		Timestamp t = new Timestamp(System.currentTimeMillis());
 		batches.removeIf(b -> t.after(b.getStartDate()));
 		if (batches.isEmpty()) {
@@ -126,9 +111,9 @@ public class BatchController {
 	 * @return a list of all in-progress batches for the trainer, Http status 200
 	 *         otherwise Http status 204
 	 */
-	@GetMapping("inprogress")
-	public Batch getBatchInProgress(@RequestParam("email") String email ) {
-		System.out.println("inprogress/" + email);
+	@GetMapping("inprogress/{email}/")
+	public Batch getBatchInProgress(@PathVariable String email ) {
+//		System.out.println("inprogress/" + email);
 		List<Batch> batches = batchService.getBatchByTrainerID(trainerService.getTrainerByEmail(email));
 		if (batches == null) {
 			throw new NoBatchException("no bathces in progress");
@@ -156,23 +141,14 @@ public class BatchController {
 	 * @return a list of all in-progress batches for the trainer, Http status 200
 	 *         otherwise Http status 204
 	 */
-	@GetMapping("allinprogress")
-	public List<Batch> getAllBatchesInProgress(@RequestParam("email") String email) {
-		System.out.println("allinprogress/" + email);
+	@GetMapping("allinprogress/{email}/")
+	public List<Batch> getAllBatchesInProgress(@PathVariable String email) {
+//		System.out.println("allinprogress/" + email);
 		List<Batch> batches = batchService.getBatchByTrainerID(trainerService.getTrainerByEmail(email));
 		if (batches == null) {
 			throw new NoBatchException("no batches in progress");
 		}
 		
-		// List<Batch> batchesInProgress = new ArrayList<>();
-		// Timestamp t = new Timestamp(System.currentTimeMillis());
-		// for (Batch b : batches) {
-		// if (t.after(b.getStartDate()) && t.before(b.getEndDate())) {
-		// batchesInProgress.add(b);
-		// }
-		// }
-		// return batchesInProgress;
-
 		Timestamp t = new Timestamp(System.currentTimeMillis());
 		batches.removeIf(b -> t.before(b.getStartDate()) || t.after(b.getEndDate()));
 		if (batches.isEmpty()) {
@@ -180,19 +156,6 @@ public class BatchController {
 		}
 		return batches;
 	}
-
-	// TODO look up jackson exception for spring mvc @RequestBody Type for parameter
-	// input
-//	@RequestMapping(value = "Edit", method = RequestMethod.POST, produces = "application/json")
-//	public void updateUser(@RequestBody String jsonObject) {
-//		Batch currentBatch = null;
-//		try {
-//			currentBatch = new ObjectMapper().readValue(jsonObject, Batch.class);
-//			batchService.addOrUpdateBatch(currentBatch);
-//		} catch (IOException e) {
-//			LogManager.getRootLogger().error(e);
-//		}
-//	}
 
 	/**
 	 * A method to get batch by batch id using BatchService.
@@ -219,7 +182,7 @@ public class BatchController {
 	 */
 	@PostMapping("updatebatch")
 	public Batch updateBatch(@RequestBody Batch batch) {
-		System.out.println(batch);
+		// System.out.println(batch);
 		
 		Batch result = batchService.addOrUpdateBatch(batch);
 		if (result == null) {
